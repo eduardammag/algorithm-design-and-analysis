@@ -1,63 +1,54 @@
 from graph_list import GraphList
 
 def dfs(graph: 'GraphList'):
-    pre_order = [-1] * graph.num_vertices       # ordem de descoberta de v 
-    post_order = [-1] * graph.num_vertices      # ordem de finalização de v
-    parents = [-1] * graph.num_vertices
-    pre_counter = [0]
-    post_counter = [0]
+    pre_order = [-1] * graph.num_vertices       # ordem de descoberta de cada vértice
+    post_order = [-1] * graph.num_vertices      # ordem de finalização de cada vértice
+    parents = [-1] * graph.num_vertices         # vetor de pais na DFS
+    pre_counter = [0]                           # contador de descoberta (usando lista p/ mutabilidade)
+    post_counter = [0]                          # contador de finalização
 
+    # Garante que todos os vértices sejam visitados,
+    # inclusive componentes desconexos
     for v in range(graph.num_vertices):
-        if pre_order[v] == -1:
-            parents[v] = v
+        if pre_order[v] == -1:                  # se o vértice ainda não foi descoberto
+            parents[v] = v                      # raiz da DFS é pai de si mesma
             _dfs_recursive(
                 graph, v, pre_order, pre_counter,
-                post_order, post_counter, parents)
-    return pre_order, post_order, parents
+                post_order, post_counter, parents
+            )
+    return pre_order, post_order, parents       # retorna as informações coletadas
 
 
 def _dfs_recursive(graph: 'GraphList', v1, pre_order, pre_counter,
                    post_order, post_counter, parents):
 
-    pre_order[v1] = pre_counter[0] # Marca o vertice como descoberto (pre-ordem)
+    pre_order[v1] = pre_counter[0]              # marca momento de descoberta do vértice
     pre_counter[0] += 1
 
+    # percorre vizinhos do vértice
     for (v2, peso) in graph.adj_list[v1]:
-        if pre_order[v2] == -1:  
-            parents[v2] = v1
+        if pre_order[v2] == -1:                 # se o vizinho ainda não foi descoberto
+            parents[v2] = v1                    # define o pai do vizinho
             _dfs_recursive(
                 graph, v2, pre_order, pre_counter,
                 post_order, post_counter, parents
             )
-    # Apos visitar todos os vizinhos, define pos-ordem
+
+    # após explorar todos os vizinhos, marca o momento de finalização
     post_order[v1] = post_counter[0]
     post_counter[0] += 1
 
 
-# 1. **Pre-ordem (descoberta):**
-#    → O instante em que o vertice e encontrado pela primeira vez.
-#
-# 2. **Pos-ordem (finalização):**
-#    → O instante em que terminamos de visitar todos os vizinhos
-#      e estamos "voltando" na recursão.
-#
-# O resultado e uma floresta de arvores DFS (uma para cada componente).
-
-# 🔹 Exemplo de interpretação:
-# -----------------------------
-# Se tivermos:
-#   pre_order = [0, 1, 3, 2, 4, 5]
-#   post_order = [3, 2, 1, 0, 5, 4]
-#
-# Isso significa:
-#   - O vertice 0 foi descoberto primeiro (pre=0) e finalizado apos 3 vertices (pos=3).
-#   - O vertice 3 foi descoberto na posição 3 e finalizado logo em seguida (pos=0).
-#
+# Pre-ordem (descoberta): instante em que o vertice é encontrado pela primeira vez.
+# Pos-ordem (finalização): instante em que terminamos de visitar todos os vizinhos e estamos "voltando" na recursão.
+# O resultado é uma floresta de arvores DFS (uma para cada componente).
+# Exemplo: Se tivermos pre_order = [0, 1, 3, 2, 4, 5] e post_order = [3, 2, 1, 0, 5, 4]. Isso significa:
+# O vertice 0 foi descoberto primeiro (pre=0) e finalizado apos 3 vertices (pos=3).
+# O vertice 3 foi descoberto na posição 3 e finalizado logo em seguida (pos=0).
 # Assim conseguimos saber a "linha do tempo" de cada vertice.
 #
-# 🔹 Estrutura gerada:
-# -----------------------------
-# - O conjunto de arvores geradas forma uma **floresta radicada**.
+# Estrutura gerada:
+# - O conjunto de arvores geradas forma uma floresta radicada.
 # - As raízes são vertices sem pais (parents[v] == v).
 # - As folhas são vertices sem vizinhos não visitados.
 

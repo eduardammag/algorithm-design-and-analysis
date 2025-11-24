@@ -10,10 +10,8 @@ class EdgeNode:
         return self.v if x == self.u else self.u
 
 
-# Problema: dado um grafo 𝐺 = (𝑉,𝐸), 
-# representando uma rede com capacidade nas 
-# arestas e vértices de origem e destino, 
-# encontre o fluxo máximo respeitando a capacidade das arestas. 
+# Problema: dado um grafo 𝐺 = (𝑉,𝐸), representando uma rede com capacidade nas arestas e vértices de
+# origem e destino, encontre o fluxo máximo respeitando a capacidade das arestas. 
 
 #  O fluxo será máximo caso a intensidade do  mesmo seja a maior possível no grafo 𝐺.
 from collections import deque

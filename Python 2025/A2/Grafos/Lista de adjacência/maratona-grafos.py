@@ -1,18 +1,15 @@
 from graph_list import GraphList
-import heapq
 from collections import deque
+import heapq
 
-"""1) Uma enchente inundou uma cidade representada 
-por uma grade N x M. Cada célula pode ser:
+"""1) Uma enchente inundou uma cidade representada por uma grade N x M. Cada célula pode ser:
 . (terreno seco)
 # (alagado)
 S (posição inicial do socorrista)
 V (vítima a ser resgatada)
 
-O socorrista só pode andar por terrenos secos
-(células . ou V), nas quatro direções. Seu objetivo é
-determinar quantas vítimas podem ser alcançadas
- a partir de S. """
+O socorrista só pode andar por terrenos secos (células . ou V), nas quatro direções. Seu objetivo é
+determinar quantas vítimas podem ser alcançadas a partir de S. """
 # mapa é a matriz do problema
 
 def vitimas_regastadas(mapa):
@@ -69,12 +66,9 @@ def vitimas_regastadas(mapa):
 # Complexidade: O(NM)
 
 
-"""2)Uma empresa tem N computadores conectados
-por cabos bidirecionais. Cada cabo tem um tempo
-de transmissão (em milissegundos), que pode ser
-negativo (um canal otimizado experimental).
-Você precisa calcular o menor tempo de transmissão
-entre o computador 1 e todos os outros."""
+"""2)Uma empresa tem N computadores conectados por cabos bidirecionais. Cada cabo tem um tempo
+de transmissão (em milissegundos), que pode ser negativo (um canal otimizado experimental).
+Você precisa calcular o menor tempo de transmissão entre o computador 1 e todos os outros."""
 
 def tempo_transmissao(graph = GraphList):
       N = graph.num_vertices
@@ -112,10 +106,8 @@ def tempo_transmissao(graph = GraphList):
       return dist
 
 
-"""3)Você deve conectar N ilhas por pontes. 
-Cada ponte tem um custo de construção. O objetivo
-é construir pontes suficientes para que todas
-as ilhas fiquem conectadas, com o menor custo
+"""3)Você deve conectar N ilhas por pontes. Cada ponte tem um custo de construção. O objetivo
+é construir pontes suficientes para que todas as ilhas fiquem conectadas, com o menor custo
 total possível. """
 
 def custo_mst_ilhas_prim(graph: GraphList):
@@ -192,12 +184,10 @@ def custo_mst_ilhas_prim(graph: GraphList):
 
 
 
-"""4)Você está desenvolvendo um sistema de rotas
-para uma cidade com N cruzamentos e M ruas de mão única.
-Cada rua tem um tempo de deslocamento. Calcule o
-tempo mínimo para ir do cruzamento 1 ao cruzamento N."""
+"""4)Você está desenvolvendo um sistema de rotas para uma cidade com N cruzamentos e M ruas de mão única.
+Cada rua tem um tempo de deslocamento. Calcule o tempo mínimo para ir do cruzamento 1 ao cruzamento N."""
 
-import heapq  # biblioteca padrão para usar min-heap (priority queue)
+import heapq 
 
 def menor_rota(graph: GraphList):
     N = graph.num_vertices
@@ -244,22 +234,15 @@ def menor_rota(graph: GraphList):
     # Caso contrário, retorne a menor distância encontrada.
     return dist[N - 1]
 
-"""5)Um império possui várias cidades conectadas
-por pontes e túneis secretos. As pontes podem ser
-destruídas por inimigos, mas os túneis são subterrâneos
-e seguros. Você precisa identificar todas as pontes
-críticas — arestas que, se destruídas,
-desconectam o grafo."""
+"""5)Um império possui várias cidades conectadas por pontes e túneis secretos. As pontes podem ser
+destruídas por inimigos, mas os túneis são subterrâneos e seguros. Você precisa identificar todas as pontes
+críticas — arestas que, se destruídas, desconectam o grafo."""
 
 def pontes_no_grafo(graph: GraphList):
-    # Número de vértices do grafo
     N = graph.num_vertices
+    tempo = 0          # "tempo" é usado para registrar a ordem de descoberta na DFS
+    tin = [-1] * N     # tin[u] = tempo em que o vértice u foi descoberto
 
-    # "tempo" é usado para registrar a ordem de descoberta na DFS
-    tempo = 0
-
-    # tin[u] = tempo em que o vértice u foi descoberto
-    tin = [-1] * N
 
     # low[u] = menor tempo de descoberta alcançável a partir de u
     # (incluindo subir por uma aresta de retorno/back-edge)
@@ -331,8 +314,7 @@ Um aprendiz de mago deseja saber o menor tempo possível para ir do portal 1 at�
 Caso não exista caminho entre eles, deve informar que é impossível chegar. """
 
 # Aplicação de Djisktra em um grafo de N vértices. 
-# Cada aresta tem um peso.
-# O peso é o tempo que ela leva para ser atravessada.
+# Cada aresta tem um peso. O peso é o tempo que ela leva para ser atravessada.
 # Passagem unidirecional = grafo direcionado
 
 def dijkstra(n, adj):
@@ -396,8 +378,9 @@ def dijkstra(n, adj):
     return dist[n], caminho       
                                 
 
-""" 7) Os reinos de um continente estão formando alianças. Cada aliança entre dois reinos tem um custo de manutenção anual.
-O conselho deseja criar alianças suficientes para que todos os reinos estejam conectados (direta ou indiretamente), mas gastando o mínimo possível."""     
+""" 7) Os reinos de um continente estão formando alianças. Cada aliança entre dois reinos tem um custo de
+manutenção anual. O conselho deseja criar alianças suficientes para que todos os reinos estejam conectados
+(direta ou indiretamente), mas gastando o mínimo possível."""     
 
 import heapq  # para usar min-heap
 
@@ -409,7 +392,6 @@ def custo_minimo_reinos(graph: GraphList):
     graph.adj_list[u] deve conter pares (v, w),
     onde existe aresta u -> v com peso w.
     """
-
     N = graph.num_vertices
 
     # Caso trivial: grafo vazio ou com 1 vértice
@@ -499,7 +481,6 @@ def pode_chegar_tesouro(mapa):
 
     return "nao"
 
-
 """9)O governo deseja planejar o transporte ferroviário entre N cidades.
 Algumas conexões já existem, e cada trilho tem um comprimento em quilômetros.
 Um trem parte da cidade 1 e precisa visitar todas as outras cidades que sejam possíveis de alcançar.
@@ -519,12 +500,9 @@ def cidades_alcancaveis(graph: GraphList):
     return sum(visit)
 
 
-"""10)Há N templos interligados por corredores subterrâneos
-bidirecionais. Alguns corredores são frágeis — se forem
-destruídos, podem dividir a rede de templos em partes
-desconectadas. Descubra quais corredores são críticos,
-ou seja, se forem removidos, a conexão entre os templos
-será perdida."""
+"""10)Há N templos interligados por corredores subterrâneos bidirecionais. Alguns corredores são frágeis
+— se forem destruídos, podem dividir a rede de templos em partes desconectadas. Descubra quais corredores
+são críticos, ou seja, se forem removidos, a conexão entre os templos será perdida."""
 
 def pontes_criticas(graph: GraphList):
     # Número total de vértices (templos)
