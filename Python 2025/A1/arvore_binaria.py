@@ -129,129 +129,129 @@ def binary_tree_search_max(node):
     return node
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Sucessor em ordem (in-order successor)
+
 def binary_tree_search_successor(node):
-    """
-    Retorna o sucessor em ordem.
-    Complexidade: O(h)
-    """
+    """Retorna o sucessor em ordem.  Complexidade: O(h)"""
+
+    # Se o nó for None, não há sucessor
     if node is None:
         return None
 
-    # Caso 1: existe subárvore direita
+    # Caso 1: se existe subárvore direita, o sucessor é o mínimo dela
     if node.get_right() is not None:
         return binary_tree_search_min(node.get_right())
 
-    # Caso 2: sobe até achar um pai onde ele é o filho esquerdo
-    parent = node.get_parent()
+    # Caso 2: caso não exista subárvore direita, sobe pela árvore
+    parent = node.get_parent()           # pega o pai
+    # sobe enquanto o nó for filho direito do pai
     while parent is not None and node == parent.get_right():
-        node = parent
-        parent = parent.get_parent()
+        node = parent                    # sobe um nível
+        parent = parent.get_parent()     # sobe outro nível
+
+    # quando o loop parar, parent será o sucessor (ou None)
     return parent
 
 
-# Predecessor em ordem
+# Predecessor em ordem (in-order predecessor)
 
 def binary_tree_search_predecessor(node):
-    """
-    Retorna o predecessor em ordem.
-    Complexidade: O(h)
-    """
+    """Retorna o predecessor em ordem. Complexidade: O(h)"""
+
+    # Se o nó for None, não há predecessor
     if node is None:
         return None
 
-    # Caso 1: existe subárvore esquerda
+    # Caso 1: se há subárvore esquerda, o predecessor é o máximo dela
     if node.get_left() is not None:
         return binary_tree_search_max(node.get_left())
 
-    # Caso 2: sobe até achar um pai onde ele é o filho direito
+    # Caso 2: senão, sobe até achar um pai onde o nó seja filho direito
     parent = node.get_parent()
     while parent is not None and node == parent.get_left():
-        node = parent
-        parent = parent.get_parent()
+        node = parent                   # sobe um nível
+        parent = parent.get_parent()    # sobe outro nível
+
     return parent
 
 
 # Inserção em BST
 
 def binary_tree_insert(root, key):
-    """
-    Insere key na BST recursivamente.
-    Complexidade: O(h)
-    """
-    if root is None:
-        return Node(key, None)  # você pode ajustar para aceitar 'data'
+    """Insere key na BST recursivamente. Complexidade: O(h)"""
 
+    # Se a raiz é None, cria um novo nó
+    if root is None:
+        return Node(key, None)   # pode adaptar para aceitar 'data'
+
+    # Se a chave é menor que a do nó atual, vai para a esquerda
     if key < root.get_key():
         root.set_left(binary_tree_insert(root.get_left(), key))
+
+    # Caso contrário, insere na direita
     else:
         root.set_right(binary_tree_insert(root.get_right(), key))
 
+    # Retorna o nó atual para reconstruir os ponteiros corretamente
     return root
 
 
 # Remoção em BST
 
 def binary_tree_delete(root, key):
-    """
-    Remove um valor da árvore e retorna a nova raiz.
-    Complexidade: O(h)
-    """
+    """Remove um valor da árvore e retorna a nova raiz. Complexidade: O(h)"""
+
+    # Se a árvore estiver vazia, nada a remover
     if root is None:
         return root
 
+    # Se a chave é menor, remoção está na esquerda
     if key < root.get_key():
         root.set_left(binary_tree_delete(root.get_left(), key))
 
+    # Se a chave é maior, remoção está na direita
     elif key > root.get_key():
         root.set_right(binary_tree_delete(root.get_right(), key))
 
     else:
-        # Achou o nó: delega para deleteNode
+        # Achou o nó: delega para delete_node
         root = binary_tree_delete_node(root)
 
+    # Retorna a raiz atualizada
     return root
 
 
-# Função que deleta um nó (casos padrão de remoção em BST)
+# Função auxiliar que remove um único nó da BST
 
 def binary_tree_delete_node(root):
     """
-    Remove um nó considerando seus casos:
-        - Sem filhos
-        - 1 filho (esquerda ou direita)
-        - 2 filhos (usa sucessor)
+    Remove um nó considerando todos os casos:
+    - Sem filhos
+    - 1 filho (esquerda ou direita)
+    - 2 filhos (substitui pelo sucessor)
     Complexidade: O(h)
     """
 
-    # Caso 1: sem filhos
+    # Caso 1: nó sem filhos
     if root.get_left() is None and root.get_right() is None:
-        return None  # Python coleta automaticamente
+        return None  # o GC do Python cuida do objeto
 
-    # Caso 2: só filho direito
+    # Caso 2: nó tem apenas filho direito
     if root.get_left() is None:
         return root.get_right()
 
-    # Caso 3: só filho esquerdo
+    # Caso 3: nó tem apenas filho esquerdo
     if root.get_right() is None:
         return root.get_left()
 
-    # Caso 4: dois filhos → substituir pelo sucessor
+    # Caso 4: nó com dois filhos
+    # Encontra o sucessor (menor da subárvore direita)
     successor = binary_tree_search_min(root.get_right())
-    root.set_key(successor.get_key())  # copia a chave
+
+    # Copia a chave do sucessor para o nó atual
+    root.set_key(successor.get_key())
+
+    # Remove o sucessor duplicado da subárvore direita
     root.set_right(binary_tree_delete(root.get_right(), successor.get_key()))
 
     return root
