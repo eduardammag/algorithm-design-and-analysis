@@ -1,9 +1,4 @@
-"""
-==================================================================
- QUESTÃO 3 (2 pontos)
-==================================================================
-Enunciado (resumido):
-Uma empresa de análise de redes sociais tem uma base com milhões de usuários.
+""" 3 - Uma empresa de análise de redes sociais tem uma base com milhões de usuários.
 Para cada usuário há: id, número de seguidores e índice de engajamento.
 Um 'influenciador emergente' é:
     - está no top 10% em engajamento (por engajamento) e
@@ -93,10 +88,8 @@ Discussão teórica:
 """
 
 """
-==================================================================
- QUESTÃO 4 (5 pontos)
-==================================================================
-Enunciado:
+QUESTÃO 4 (5 pontos)
+nunciado:
 Uma sequência A de tamanho n contém inteiros positivos e negativos.
 
 a) Projete um algoritmo O(n^3) capaz de determinar índices i < j tais que
@@ -196,38 +189,3 @@ Análise e justificativas (parte c):
   - Se a soma até i for negativa, estender por i+1 só pioraria, por isso reiniciamos.
   - Todas as somas ótimas são consideradas e best_sum guarda a melhor encontrada.
 """
-
-# ----------------------
-# Exemplos de uso / testes rápidos (pequenos)
-# ----------------------
-if __name__ == "__main__":
-    # Q2a streaming exemplo
-    top3 = TopNStreaming(3)
-    for v in [5, 1, 8, 3, 10, 2, 7]:
-        top3.offer(v)
-    print("Top3 (desc):", top3.get_top_sorted_desc())
-
-    # Q2b radix exemplo
-    codes = ["202407260134", "202401010001", "202499999999", "202300000000"]
-    print("Radix sorted:", radix_sort_fixed_length_numeric(codes, base_pow=4))
-
-    # Q3 exemplo
-    dataset = [
-        (1, 1000, 0.20),
-        (2, 50000, 0.05),
-        (3, 200, 0.35),
-        (4, 1000000, 0.01),
-        (5, 50, 0.33),
-        (6, 800, 0.02),
-        (7, 3000, 0.40),
-        (8, 10, 0.25),
-        (9, 999, 0.10),
-        (10, 400, 0.36)
-    ]
-    print("Emergentes (ids):", identify_emergent_influencers(dataset))
-
-    # Q4 exemplos
-    A = [ -2, 1, -3, 4, -1, 2, 1, -5, 4 ]
-    print("Cubico:", max_subarray_cubico(A))
-    print("Quadratico:", max_subarray_quadratico(A))
-    print("Kadane:", max_subarray_kadane(A))

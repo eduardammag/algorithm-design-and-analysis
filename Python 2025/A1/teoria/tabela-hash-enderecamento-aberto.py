@@ -1,8 +1,3 @@
-# TABELA HASH COMPLETA EM PYTHON 
-# - Suporte a chaves int + string
-# - Probing linear com nós reciclados
-# - Resize automático (rehash)
-
 class DANode:
     """
     Nó da tabela hash.
@@ -167,49 +162,6 @@ class DirectHashTable:
             print(f"[{i:02d}] → {status}")
         print("====================\n")
 
-
-# TESTES DE EXEMPLO (como pedido)
-
-def run_tests():
-    print("=== Testes da Tabela Hash ===")
-
-    ht = DirectHashTable(size=4)
-
-    print("\n-- Inserindo valores --")
-    ht.insert_or_update("ana", 10)
-    ht.insert_or_update("bia", 20)
-    ht.insert_or_update("carla", 30)
-    ht.print_table()
-
-    print("-- Atualizando valor --")
-    ht.insert_or_update("ana", 99)
-    ht.print_table()
-
-    print("-- Buscando elementos --")
-    print("Busca ana:", ht.search("ana"))
-    print("Busca bia:", ht.search("bia"))
-    print("Busca xpto:", ht.search("xpto"))
-
-    print("\n-- Removendo bia --")
-    ht.remove("bia")
-    ht.print_table()
-
-    print("-- Reinserindo chave diferente (provocando reuso do slot reciclado) --")
-    ht.insert_or_update("diego", 77)
-    ht.print_table()
-
-    print("-- Inserindo muitos itens para ativar resize --")
-    ht.insert_or_update("eva", 1)
-    ht.insert_or_update("fabi", 2)
-    ht.insert_or_update("gabi", 3)
-    ht.insert_or_update("helo", 4)
-    ht.print_table()
-
-    print("=== Testes finalizados ===")
-
-# Executar testes automaticamente quando rodar o arquiv----
-if __name__ == "__main__":
-    run_tests()
 
 # RESUMO EM TÓPICOS — TABELAS HASH COM ENDEREÇAMENTO ABERTO
 # - A busca por uma chave depende da sequência de sondagem hash(key, i) gerada pela função de espalhamento.

@@ -1,5 +1,3 @@
-
-
 def question_1():
     """
     Determine uma função f(n) para o código a seguir tal que

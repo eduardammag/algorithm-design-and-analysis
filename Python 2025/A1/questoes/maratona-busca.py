@@ -1,13 +1,9 @@
-"""
-===========================================================
-QUESTÃO 1 — Busca Binária: Contagem de Ocorrências
------------------------------------------------------------
+"""QUESTÃO 1 — Busca Binária: Contagem de Ocorrências
 Dado um vetor ordenado de N inteiros e um valor K,
 calcular quantas vezes K aparece no vetor, usando somente
 operações de busca binária (O(log N)).
 
 Saída: quantidade de ocorrências de K.
-===========================================================
 """
 
 def binary_search_left(arr, x):
@@ -38,16 +34,12 @@ def count_occurrences(arr, k):
     return max(0, right - left)
 
 
-"""
-===========================================================
-QUESTÃO 2 — Primeiro Elemento Maior que X
------------------------------------------------------------
+"""QUESTÃO 2 — Primeiro Elemento Maior que X
 Dado um vetor ordenado e um valor X,
 retornar o menor índice i tal que arr[i] > X.
 Se não existir, retornar -1.
 
 Obrigatório: resolver com busca binária.
-===========================================================
 """
 
 def first_greater(arr, x):
@@ -64,13 +56,10 @@ def first_greater(arr, x):
 
 
 """
-===========================================================
 QUESTÃO 3 — Construção de BST e Impressão In-Order
------------------------------------------------------------
 Dada uma sequência de inteiros, construir a Árvore Binária
 de Busca (BST) e imprimir os elementos em ordem crescente
 (in-order).
-===========================================================
 """
 
 class Node:
@@ -96,14 +85,11 @@ def bst_inorder(root):
 
 
 """
-===========================================================
 QUESTÃO 4 — Altura da BST
------------------------------------------------------------
 Dada uma sequência de inteiros, construir a BST e calcular
 sua altura. Altura:
  - árvore vazia → 0
  - apenas raiz → 1
-===========================================================
 """
 
 def bst_height(root):
@@ -113,9 +99,7 @@ def bst_height(root):
 
 
 """
-===========================================================
 QUESTÃO 5 — BST com Inserção, Busca e Remoção (geral)
------------------------------------------------------------
 Processar Q operações:
 
  I X  -> inserir X
@@ -127,7 +111,6 @@ A remoção deve tratar os 3 casos:
  2. nó com 1 filho
  3. nó com 2 filhos (usar sucessor)
 
-===========================================================
 """
 
 def bst_search(root, key):
@@ -172,37 +155,3 @@ def bst_remove(root, key):
         root.right = bst_remove(root.right, succ.key)
 
     return root
-
-
-"""
-===========================================================
-EXEMPLOS DE USO (Teste rápido)
-===========================================================
-"""
-
-if __name__ == "__main__":
-    print("\n--- Questão 1 ---")
-    arr = [1, 2, 2, 2, 3, 5]
-    print("Ocorrências de 2 =", count_occurrences(arr, 2))
-
-    print("\n--- Questão 2 ---")
-    arr = [1, 3, 5, 7, 9]
-    print("Primeiro maior que 4 =", first_greater(arr, 4))
-
-    print("\n--- Questão 3 e 4 ---")
-    vals = [5, 2, 8, 1, 3]
-    root = None
-    for v in vals:
-        root = bst_insert(root, v)
-
-    print("In-order:", list(bst_inorder(root)))
-    print("Altura:", bst_height(root))
-
-    print("\n--- Questão 5 ---")
-    root = None
-    for v in [5, 3, 7, 1, 4]:
-        root = bst_insert(root, v)
-
-    print("Busca 4:", "FOUND" if bst_search(root, 4) else "NOT FOUND")
-    root = bst_remove(root, 3)
-    print("In-order após remover 3:", list(bst_inorder(root)))

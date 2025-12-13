@@ -1,19 +1,6 @@
-"""
-============================================================
-RESOLUÇÃO DAS QUESTÕES 7–15 (ALGORITMOS + ENUNCIADOS)
-============================================================
-
-Cada questão contém:
- - Enunciado original (em comentário)
- - Solução em Python
- - Explicações detalhadas
-"""
-
-# ----------------------------------------------------------
 # 7. Dado um inteiro k e uma lista A contendo m números diferentes (m ≥ k),
 #    projete um algoritmo que retorne o k-ésimo inteiro que mais se repete.
 #    Complexidade O(n).
-# ----------------------------------------------------------
 
 from collections import Counter
 
@@ -28,10 +15,8 @@ def questao7_k_esimo_mais_frequente(A, k):
     return mais_frequentes[k-1][0]
 
 
-# ----------------------------------------------------------
 # 8. Dado um valor z e uma lista A com n inteiros, encontre um par cuja soma = z.
 #    Complexidade O(n).
-# ----------------------------------------------------------
 
 def questao8_par_soma_z(A, z):
     """
@@ -45,11 +30,9 @@ def questao8_par_soma_z(A, z):
     return None
 
 
-# ----------------------------------------------------------
 # 9. Dada uma lista A que contém n listas com m inteiros cada,
 #    retorne quantas listas têm elementos em comum com as outras.
 #    Complexidade O(n * m).
-# ----------------------------------------------------------
 
 def questao9_listas_com_intersecao(A):
     """
@@ -70,11 +53,9 @@ def questao9_listas_com_intersecao(A):
     return count
 
 
-# ----------------------------------------------------------
 # 10. Dada uma lista A de inteiros não negativos,
 #     retorne o maior x tal que existam pelo menos x inteiros em A >= x.
 #     Complexidade O(n).
-# ----------------------------------------------------------
 
 def questao10_maior_x(A):
     """
@@ -99,11 +80,9 @@ def questao10_maior_x(A):
     return -1
 
 
-# ----------------------------------------------------------
 # 11. Dada uma BST T com n nós,
 #     retorne a menor diferença entre valores de nós diferentes.
 #     Complexidade O(n).
-# ----------------------------------------------------------
 
 class Node:
     def __init__(self, v):
@@ -132,10 +111,8 @@ def questao11_menor_diferenca_bst(root):
     return menor
 
 
-# ----------------------------------------------------------
 # 12. Dados x, k e a lista A, retorne os k elementos mais próximos de x.
 #     Em ordem crescente de proximidade. Complexidade O(n log k).
-# ----------------------------------------------------------
 
 import heapq
 
@@ -157,10 +134,8 @@ def questao12_k_mais_proximos(A, x, k):
     return [v for _, v in sorted(heap, key=lambda t: -t[0])]
 
 
-# ----------------------------------------------------------
 # 13. Dado número z > 0 e lista A, retorne a maior diferença entre qualquer par
 #     tal que a diferença ≤ z. Complexidade O(n log n).
-# ----------------------------------------------------------
 
 def questao13_maior_diff_limitada(A, z):
     """
@@ -177,11 +152,9 @@ def questao13_maior_diff_limitada(A, z):
     return melhor
 
 
-# ----------------------------------------------------------
 # 14. Utilizando método guloso:
 #     Retorne o maior tamanho de pares (i,j) tal que produto A[i]*A[j] ≤ produto máximo.
 #     Complexidade O(n).
-# ----------------------------------------------------------
 
 def questao14_guloso_produtos(A):
     """
@@ -202,10 +175,8 @@ def questao14_guloso_produtos(A):
     return maior1 * maior2
 
 
-# ----------------------------------------------------------
 # 15. Construir BST balanceada contendo valores de uma lista ordenada.
 #     Complexidade O(n).
-# ----------------------------------------------------------
 
 def questao15_bst_balanceada(sorted_list):
     """
@@ -218,17 +189,3 @@ def questao15_bst_balanceada(sorted_list):
     root.l = questao15_bst_balanceada(sorted_list[:mid])
     root.r = questao15_bst_balanceada(sorted_list[mid+1:])
     return root
-
-
-# =============================
-# EXEMPLOS DE USO (opcional)
-# =============================
-if __name__ == "__main__":
-    print("Questão 7:", questao7_k_esimo_mais_frequente([1,1,2,3,2,1], 2))
-    print("Questão 8:", questao8_par_soma_z([2,7,11,15], 9))
-    print("Questão 9:", questao9_listas_com_intersecao([[1,2],[3,4],[2,5],[7,8]]))
-    print("Questão 10:", questao10_maior_x([3,0,6,1,5]))
-    print("Questão 12:", questao12_k_mais_proximos([1,2,3,4,5], 3, 2))
-    print("Questão 13:", questao13_maior_diff_limitada([1,5,9,14], 6))
-    print("Questão 14:", questao14_guloso_produtos([3,5,2,9]))
-    print("Questão 15: BST criada com sucesso!")

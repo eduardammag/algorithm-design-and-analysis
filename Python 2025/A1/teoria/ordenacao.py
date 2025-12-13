@@ -1,5 +1,3 @@
-# IMPLEMENTAÇÃO DOS ALGORITMOS DE ORDENAÇÃO EM PYTHON
-
 # Bubble Sort Otimizado
 def bubble_sort(v):
     n = len(v)
