@@ -1,18 +1,13 @@
-# ------------------------------------------------------------
 # IMPLEMENTAÇÃO DOS ALGORITMOS DE ORDENAÇÃO EM PYTHON
-# TODOS ADAPTADOS DO C ORIGINAL — SEM USAR SWAP()
-# ------------------------------------------------------------
 
-# ------------------------------------------------------------
 # Bubble Sort Otimizado
-# ------------------------------------------------------------
-def bubble_sort_optimized(v):
+def bubble_sort(v):
     n = len(v)
     for j in range(n - 1):                 # Cada passagem completa no vetor
         swapped = False                    # Flag para detectar se houve troca
         for i in range(n - 1):             # Compara cada par adjacente
             if v[i] > v[i + 1]:            # Se estiver fora de ordem
-                temp = v[i]                # Troca sem usar swap()
+                temp = v[i]                
                 v[i] = v[i + 1]
                 v[i + 1] = temp
                 swapped = True
@@ -20,9 +15,7 @@ def bubble_sort_optimized(v):
             break
 
 
-# ------------------------------------------------------------
 # Selection Sort
-# ------------------------------------------------------------
 def selection_sort(v):
     n = len(v)
     for i in range(n - 1):                 # Posição atual onde o menor deve ir
@@ -30,15 +23,12 @@ def selection_sort(v):
         for j in range(i + 1, n):          # Procura o menor no restante
             if v[j] < v[min_index]:
                 min_index = j
-        # Troca v[i] com v[min_index] sem swap()
         temp = v[i]
         v[i] = v[min_index]
         v[min_index] = temp
 
 
-# ------------------------------------------------------------
 # Insertion Sort
-# ------------------------------------------------------------
 def insertion_sort(v):
     n = len(v)
     for i in range(1, n):                  # Começa do segundo elemento
@@ -51,9 +41,7 @@ def insertion_sort(v):
         v[j + 1] = current_value           # Insere o valor
 
 
-# ------------------------------------------------------------
 # Função merge para o Merge Sort
-# ------------------------------------------------------------
 def merge(v, startA, startB, endB):
     # Cria vetor temporário com o tamanho exato
     r = [0] * (endB - startA)
@@ -89,9 +77,7 @@ def merge(v, startA, startB, endB):
         v[i] = r[i - startA]
 
 
-# ------------------------------------------------------------
 # Merge Sort
-# ------------------------------------------------------------
 def merge_sort(v, start, end):
     if start < end - 1:               # Existe mais de 1 elemento
         mid = (start + end) // 2      # Divide em duas metades
@@ -100,11 +86,9 @@ def merge_sort(v, start, end):
         merge(v, start, mid, end)     # Intercala
 
 
-# ------------------------------------------------------------
 # Partition do QuickSort
-# ------------------------------------------------------------
 def partition(v, p, r):
-    pivot = v[r]                      # Pivô escolhido igual ao código em C
+    pivot = v[r]                      # Pivô escolhido 
     j = p                             # Marca a região ≤ pivô
 
     for i in range(p, r):
@@ -119,13 +103,10 @@ def partition(v, p, r):
     temp = v[j]
     v[j] = v[r]
     v[r] = temp
-
     return j
 
 
-# ------------------------------------------------------------
 # QuickSort recursivo padrão
-# ------------------------------------------------------------
 def quicksort(v, p, r):
     if p < r:
         j = partition(v, p, r)
@@ -133,9 +114,7 @@ def quicksort(v, p, r):
         quicksort(v, j + 1, r)
 
 
-# ------------------------------------------------------------
-# QuickSort com tail recursion optimization (versão do enunciado)
-# ------------------------------------------------------------
+# QuickSort com tail recursion optimization
 def quicksort_optimized(v, p, r):
     while p < r:
         j = partition(v, p, r)
@@ -148,9 +127,7 @@ def quicksort_optimized(v, p, r):
             r = j - 1
 
 
-# ------------------------------------------------------------
 # Heapify
-# ------------------------------------------------------------
 def heapify(v, n, i):
     largest = i
     left = 2 * i + 1
@@ -172,9 +149,7 @@ def heapify(v, n, i):
         heapify(v, n, largest)        # Continua ajustando
 
 
-# ------------------------------------------------------------
 # Build Heap
-# ------------------------------------------------------------
 def build_heap(v):
     n = len(v)
     # Começa do último nó que possui filhos até a raiz
@@ -182,9 +157,7 @@ def build_heap(v):
         heapify(v, n, i)
 
 
-# ------------------------------------------------------------
 # Heap Sort
-# ------------------------------------------------------------
 def heap_sort(v):
     n = len(v)
     build_heap(v)
@@ -197,23 +170,17 @@ def heap_sort(v):
         heapify(v, i, 0)              # Ajusta o heap reduzido
 
 
-# ============================================================
-# COUNTING SORT — TRADUÇÃO FIEL DO C
-# ============================================================
+# COUNTING SORT 
 def counting_sort(v, k):
     n = len(v)
-
-    # fs[k+1]
-    fs = [0] * (k + 1)
-
-    # temp[n]
-    temp = [0] * n
+    fs = [0] * (k + 1) # fs[k+1]
+    temp = [0] * n      # temp[n]
 
     # Inicializa frequências
     for j in range(k + 1):
         fs[j] = 0
 
-    # Conta ocorrências com deslocamento +1 (igual ao C)
+    # Conta ocorrências com deslocamento +1
     for i in range(n):
         fs[v[i] + 1] += 1
 
@@ -232,9 +199,7 @@ def counting_sort(v, k):
         v[i] = temp[i]
 
 
-# ============================================================
-# RADIX SORT (LSD) — TRADUZIDO DO C
-# ============================================================
+# RADIX SORT (LSD)
 def radix_sort(v, W, K):
     """
     v = lista onde cada elemento é uma lista de bytes ou string indexável
@@ -270,9 +235,7 @@ def radix_sort(v, W, K):
             v[i] = aux[i]
 
 
-# ============================================================
 # INSERTION SORT (para uso no Bucket Sort)
-# ============================================================
 def insertion_sort(v):
     n = len(v)
     for i in range(1, n):
@@ -284,9 +247,7 @@ def insertion_sort(v):
         v[j + 1] = current_value
 
 
-# ============================================================
-# BUCKET SORT — TRADUÇÃO FIEL DO C++
-# ============================================================
+# BUCKET SORT
 def bucket_sort(v):
     """
     bucketSort(float v[], int n)
@@ -317,14 +278,9 @@ def bucket_sort(v):
 
 
 """
-===============================================================
  COMPLEXIDADES DOS ALGORITMOS — RESUMO GERAL
- Desde o início da conversa: todos os algoritmos citados
-===============================================================
 
-───────────────────────────────────────────────────────────────
 1) BUBBLE SORT (OTIMIZADO)
-───────────────────────────────────────────────────────────────
 • Tempo (pior caso):     O(n²)
 • Tempo (melhor caso):   O(n)  — detecta quando não há trocas
 • Tempo (médio):         O(n²)
@@ -334,9 +290,7 @@ Bubble sort compara pares adjacentes e realiza trocas quando necessário.
 A versão otimizada para cedo quando nenhuma troca ocorre em uma iteração.
 
 
-───────────────────────────────────────────────────────────────
 2) SELECTION SORT
-───────────────────────────────────────────────────────────────
 • Tempo (pior caso):     O(n²)
 • Tempo (melhor caso):   O(n²)
 • Tempo (médio):         O(n²)
@@ -346,9 +300,7 @@ Seleciona repetidamente o menor elemento e o coloca na frente.
 Mesmo se o vetor estiver ordenado, percorre tudo para encontrar o mínimo.
 
 
-───────────────────────────────────────────────────────────────
 3) INSERTION SORT
-───────────────────────────────────────────────────────────────
 • Tempo (pior caso):     O(n²)
 • Tempo (melhor caso):   O(n)  — vetor já ordenado
 • Tempo (médio):         O(n²)
@@ -357,9 +309,7 @@ Mesmo se o vetor estiver ordenado, percorre tudo para encontrar o mínimo.
 Insere cada elemento na posição correta entre os anteriores.
 
 
-───────────────────────────────────────────────────────────────
 4) MERGE SORT
-───────────────────────────────────────────────────────────────
 • Tempo (pior caso):     O(n log n)
 • Tempo (melhor caso):   O(n log n)
 • Tempo (médio):         O(n log n)
@@ -369,9 +319,7 @@ Divide o vetor em duas metades, ordena recursivamente e intercala.
 É eficiente e previsível.
 
 
-───────────────────────────────────────────────────────────────
 5) QUICK SORT (versão básica e versão otimizada por cauda)
-───────────────────────────────────────────────────────────────
 • Tempo (pior caso):     O(n²) — pivô ruim (ex: vetor já ordenado)
 • Tempo (melhor caso):   O(n log n)
 • Tempo (médio):         O(n log n)
@@ -383,9 +331,7 @@ Usa divisão em torno de um pivô. A versão otimizada sempre recursa no lado
 menor, reduzindo o consumo da pilha (tail recursion optimization).
 
 
-───────────────────────────────────────────────────────────────
 6) HEAP SORT
-───────────────────────────────────────────────────────────────
 • Tempo (pior caso):     O(n log n)
 • Tempo (melhor caso):   O(n log n)
 • Tempo (médio):         O(n log n)
@@ -394,9 +340,7 @@ menor, reduzindo o consumo da pilha (tail recursion optimization).
 Constrói um heap máximo e repete extraindo o maior elemento.
 
 
-───────────────────────────────────────────────────────────────
 7) COUNTING SORT
-───────────────────────────────────────────────────────────────
 • Tempo:                 O(n + k)
 • Espaço:                O(n + k)
 • Estável:               SIM
@@ -404,9 +348,7 @@ Funciona apenas para inteiros pequenos (faixa limitada). Usa contagem
 de frequências e prefix sums para distribuir ordenadamente.
 
 
-───────────────────────────────────────────────────────────────
 8) RADIX SORT (LSD para bytes/strings)
-───────────────────────────────────────────────────────────────
 • Tempo:                 O(W * (n + K))
   onde:
      W = número de dígitos/caracteres
@@ -416,9 +358,7 @@ de frequências e prefix sums para distribuir ordenadamente.
 Aplica counting sort em cada posição (da menos significativa para a mais).
 
 
-───────────────────────────────────────────────────────────────
 9) BUCKET SORT (para floats em [0,1))
-───────────────────────────────────────────────────────────────
 • Tempo (médio):         O(n)      — distribuição uniforme
 • Tempo (pior caso):     O(n²)     — todos no mesmo bucket
 • Espaço:                O(n)
@@ -427,9 +367,7 @@ Distribui elementos em n baldes, ordena cada balde individualmente
 (geralmente com insertion sort) e concatena os resultados.
 
 
-───────────────────────────────────────────────────────────────
 10) SELEÇÃO LINEAR (QUICKSELECT) — citado no início
-───────────────────────────────────────────────────────────────
 • Tempo (pior caso):     O(n²)
 • Tempo (médio):         O(n)
 • Espaço:                O(1)
@@ -437,25 +375,19 @@ Algoritmo semelhante ao quicksort, mas apenas recursa no lado que contém
 o k-ésimo menor elemento.
 
 
-───────────────────────────────────────────────────────────────
 11) MEDIANA DAS MEDIANAS (SELECT EXATO) — citado no início
-───────────────────────────────────────────────────────────────
 • Tempo (pior caso):     O(n)
 • Espaço:                O(1) ou O(log n) dependendo da forma
 Escolhe o pivô de forma determinística garantindo tempo linear no pior caso.
 
 
-───────────────────────────────────────────────────────────────
 12) BUSCA BINÁRIA (citada no início da conversa)
-───────────────────────────────────────────────────────────────
 • Tempo:                 O(log n)
 • Espaço:                O(1)
 Busca em vetor ordenado dividindo ao meio repetidamente.
 
 
-───────────────────────────────────────────────────────────────
 13) ÁRVORE BINÁRIA DE BUSCA (citada no início da conversa)
-───────────────────────────────────────────────────────────────
 • Busca/Inserção/Remoção:
     - melhor/médio:      O(log n)
     - pior caso:         O(n)  — se ficar degenerada
@@ -464,9 +396,7 @@ Estrutura que mantém os elementos com ordem relativa,
 mas depende do balanceamento.
 
 
-───────────────────────────────────────────────────────────────
 14) TABELA HASH — ENCADEAMENTO (citada no início)
-───────────────────────────────────────────────────────────────
 • Busca/Inserção/Remoção:
     - médio caso:        O(1)
     - pior caso:         O(n)
@@ -474,9 +404,7 @@ mas depende do balanceamento.
 Usa listas ligadas ou vetores para armazenar colisões.
 
 
-───────────────────────────────────────────────────────────────
 15) TABELA HASH — ENDEREÇAMENTO ABERTO (citada no início)
-───────────────────────────────────────────────────────────────
 • Busca/Inserção/Remoção:
     - médio caso:        O(1)
     - pior caso:         O(n)
@@ -484,15 +412,9 @@ Usa listas ligadas ou vetores para armazenar colisões.
 Resolve colisões sondando posições alternativas no próprio vetor.
 
 
-================================================================
 RESUMO FINAL
-================================================================
 - Algoritmos O(n log n): merge sort, quicksort (médio), heap sort.
 - Algoritmos quadráticos: bubble, selection, insertion (exceto melhores casos).
 - Algoritmos lineares: counting sort, radix sort, bucket sort (médio),
   quickselect (médio), mediana das medianas (pior caso).
-- Estruturas auxiliares:
-    árvore binária de busca, hash com encadeamento e aberto.
-
-================================================================
-"""
+="""

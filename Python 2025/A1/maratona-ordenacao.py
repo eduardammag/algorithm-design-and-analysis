@@ -1,19 +1,5 @@
-"""
-===========================================================
-5 QUESTÕES DE MARATONA (NÍVEL MÉDIO) – ALGORITMOS DE ORDENAÇÃO
-(Bubble, Insertion, MergeSort, QuickSort, HeapSort, Counting, Radix, Bucket)
-Cada questão contém:
- - Enunciado
- - Solução completa
- - Código totalmente comentado
-===========================================================
-"""
-
-# ==========================================================
-# QUESTÃO 1 — Ordenação por Bubble Sort (contando trocas)
-# ==========================================================
-"""
-Enunciado:
+#  1 — Ordenação por Bubble Sort (contando trocas)
+""" Enunciado:
 Dado um vetor de N inteiros, ordene-o utilizando Bubble Sort,
 mas também retorne o número total de trocas realizadas.
 Imprima o array ordenado e o total de trocas.
@@ -23,8 +9,7 @@ Entrada de exemplo:
 
 Saída esperada:
 Array ordenado: [1, 2, 4, 5, 8]
-Trocas: 4
-"""
+Trocas: 4"""
 
 def bubble_sort_count(arr):
     n = len(arr)
@@ -37,7 +22,7 @@ def bubble_sort_count(arr):
                 trocas += 1
     return arr, trocas
 
-print("QUESTÃO 1")
+print(" 1")
 a = [5, 1, 4, 2, 8]
 ordenado, t = bubble_sort_count(a)
 print("Ordenado:", ordenado)
@@ -45,11 +30,8 @@ print("Trocas:", t)
 print("-" * 60)
 
 
-# ==========================================================
-# QUESTÃO 2 — Insertion Sort com contagem de inserções
-# ==========================================================
-"""
-Enunciado:
+#  2 — Insertion Sort com contagem de inserções
+"""Enunciado:
 Implemente o algoritmo Insertion Sort e conte quantas vezes
 um elemento foi movido dentro do array.
 
@@ -58,8 +40,7 @@ Entrada:
 
 Saída:
 Ordenado: [1, 3, 4, 5, 9]
-Movimentos: (algum valor)
-"""
+Movimentos: (algum valor)"""
 
 def insertion_sort_moves(arr):
     moves = 0
@@ -77,7 +58,7 @@ def insertion_sort_moves(arr):
         arr[j + 1] = chave
     return arr, moves
 
-print("QUESTÃO 2")
+print(" 2")
 b = [9, 5, 1, 4, 3]
 ordenado, mv = insertion_sort_moves(b)
 print("Ordenado:", ordenado)
@@ -85,11 +66,8 @@ print("Movimentos:", mv)
 print("-" * 60)
 
 
-# ==========================================================
-# QUESTÃO 3 — MergeSort para contar inversões
-# ==========================================================
-"""
-Enunciado:
+#  3 — MergeSort para contar inversões
+""" Enunciado:
 Use MergeSort para contar o número de inversões no array.
 Uma inversão ocorre quando i < j, mas arr[i] > arr[j].
 
@@ -97,8 +75,7 @@ Entrada:
 [2, 4, 1, 3, 5]
 
 Saída:
-Inversões: 3
-"""
+Inversões: 3"""
 
 def merge_count(arr):
     if len(arr) <= 1:
@@ -127,7 +104,7 @@ def merge_count(arr):
 
     return merged, inversoes
 
-print("QUESTÃO 3")
+print(" 3")
 c = [2, 4, 1, 3, 5]
 ordenado, inv = merge_count(c)
 print("Ordenado:", ordenado)
@@ -135,11 +112,8 @@ print("Inversões:", inv)
 print("-" * 60)
 
 
-# ==========================================================
-# QUESTÃO 4 — QuickSort (pivô final) + contar partições
-# ==========================================================
-"""
-Enunciado:
+#  4 — QuickSort (pivô final) + contar partições
+"""Enunciado:
 Implemente o QuickSort usando como pivô o último elemento
 e conte quantas partições (chamadas da função partition) ocorreram.
 
@@ -148,8 +122,7 @@ Entrada:
 
 Saída exemplo:
 Ordenado: [1, 5, 7, 8, 9, 10]
-Partições: (algum valor)
-"""
+Partições: (algum valor)"""
 
 particoes = 0
 
@@ -175,7 +148,7 @@ def quicksort(arr, low, high):
         quicksort(arr, low, pi - 1)
         quicksort(arr, pi + 1, high)
 
-print("QUESTÃO 4")
+print(" 4")
 d = [10, 7, 8, 9, 1, 5]
 particoes = 0
 quicksort(d, 0, len(d) - 1)
@@ -184,11 +157,8 @@ print("Partições:", particoes)
 print("-" * 60)
 
 
-# ==========================================================
-# QUESTÃO 5 — HeapSort para ordenar notas de alunos
-# ==========================================================
-"""
-Enunciado:
+#  5 — HeapSort para ordenar notas de alunos
+""" Enunciado:
 Você recebe as notas de alunos e deve ordená-las usando HeapSort.
 Imprima o vetor ordenado de forma crescente.
 
@@ -231,25 +201,15 @@ def heapsort(arr):
         arr[i], arr[0] = arr[0], arr[i]
         heapify(arr, i, 0)
 
-print("QUESTÃO 5")
+print(" 5")
 e = [70, 50, 90, 30, 100, 60]
 heapsort(e)
 print("Ordenado:", e)
 print("-" * 60)
 
 
-"""
-======================================================================
-5 QUESTÕES DE MARATONA — ALGORITMOS DE ORDENAÇÃO
-COM CONTEXTO, ENUNCIADO E SOLUÇÕES COMPLETAS + COMENTADAS
-======================================================================
-"""
-
-# =====================================================================
-# QUESTÃO 1 — MergeSort em tempos de entrega
-# =====================================================================
-"""
-Enunciado:
+# 6 — MergeSort em tempos de entrega
+"""Enunciado:
 Uma empresa de logística recebe uma lista com os tempos estimados de
 entrega de pedidos (em horas). Para organizar melhor a distribuição,
 é necessário ordenar esses tempos em ordem crescente usando MergeSort.
@@ -259,8 +219,7 @@ Exemplo:
 Entrada: [12, 5, 7, 3, 9]
 Saída:
 Ordenado: [3, 5, 7, 9, 12]
-Merges realizados: X
-"""
+Merges realizados: X"""
 
 merge_calls = 0
 
@@ -295,7 +254,7 @@ def merge(left, right):
     result.extend(right[j:])
     return result
 
-print("QUESTÃO 1")
+print(" 1")
 tempos = [12, 5, 7, 3, 9]
 merge_calls = 0
 result = merge_sort_count(tempos)
@@ -304,11 +263,8 @@ print("Merges realizados:", merge_calls)
 print("-" * 70)
 
 
-# =====================================================================
-# QUESTÃO 2 — QuickSort com pivô mediana de 3 (tempos de corrida)
-# =====================================================================
-"""
-Enunciado:
+#  7 — QuickSort com pivô mediana de 3 (tempos de corrida)
+"""Enunciado:
 Em uma maratona, você recebe os tempos finais dos corredores.
 Ordene os tempos usando QuickSort escolhendo o pivô pela mediana
 dos valores: primeiro, meio e último elemento.
@@ -318,8 +274,7 @@ Devolva:
 - número de trocas
 
 Entrada:
-[312, 280, 294, 300, 310, 275]
-"""
+[312, 280, 294, 300, 310, 275]"""
 
 trocas_quick = 0
 
@@ -354,7 +309,7 @@ def quicksort_mediana(arr, low, high):
         quicksort_mediana(arr, low, pi - 1)
         quicksort_mediana(arr, pi + 1, high)
 
-print("QUESTÃO 2")
+print(" 2")
 tempos_corrida = [312, 280, 294, 300, 310, 275]
 trocas_quick = 0
 quicksort_mediana(tempos_corrida, 0, len(tempos_corrida) - 1)
@@ -363,9 +318,7 @@ print("Trocas:", trocas_quick)
 print("-" * 70)
 
 
-# =====================================================================
-# QUESTÃO 3 — Counting Sort em notas escolares
-# =====================================================================
+#  8 — Counting Sort em notas escolares
 """
 Enunciado:
 Uma escola deseja ordenar as notas (0 a 100) dos alunos.
@@ -393,7 +346,7 @@ def counting_sort(arr, max_val=100):
 
     return sorted_arr, count
 
-print("QUESTÃO 3")
+print(" 3")
 notas = [70, 50, 90, 30, 100, 60, 50, 80]
 sorted_notas, count_vec = counting_sort(notas)
 print("Ordenado:", sorted_notas)
@@ -401,17 +354,13 @@ print("Vetor de contagem:", count_vec)
 print("-" * 70)
 
 
-# =====================================================================
-# QUESTÃO 4 — Radix Sort mostrando buckets a cada passo
-# =====================================================================
-"""
-Enunciado:
+#  9 — Radix Sort mostrando buckets a cada passo
+"""Enunciado:
 Você deve ordenar números de protocolo (mesmo número de dígitos)
 usando Radix Sort e mostrar os buckets usados em cada dígito.
 
 Entrada:
-[329, 457, 657, 839, 436, 720, 355]
-"""
+[329, 457, 657, 839, 436, 720, 355]"""
 
 def radix_sort_verbose(arr):
     max_digits = len(str(max(arr)))
@@ -437,24 +386,20 @@ def radix_sort_verbose(arr):
 
     return output
 
-print("QUESTÃO 4")
+print(" 4")
 protocolos = [329, 457, 657, 839, 436, 720, 355]
 final_radix = radix_sort_verbose(protocolos)
 print("Ordenado:", final_radix)
 print("-" * 70)
 
 
-# =====================================================================
-# QUESTÃO 5 — HeapSort em pesos de produtos
-# =====================================================================
-"""
-Enunciado:
+#  10 — HeapSort em pesos de produtos
+"""Enunciado:
 Uma fábrica precisa ordenar os pesos dos produtos de forma crescente.
 Use HeapSort e mostre o estado do heap a cada remoção do maior elemento.
 
 Entrada:
-[12.4, 5.8, 9.0, 3.1, 15.2, 11.0]
-"""
+[12.4, 5.8, 9.0, 3.1, 15.2, 11.0]"""
 
 def heapify(arr, n, i):
     largest = i
@@ -488,23 +433,14 @@ def heapsort_verbose(arr):
 
     return arr
 
-print("QUESTÃO 5")
+print(" 5")
 pesos = [12.4, 5.8, 9.0, 3.1, 15.2, 11.0]
 resultado_heap = heapsort_verbose(pesos)
 print("Ordenado:", resultado_heap)
 print("-" * 70)
 
 
-"""
-======================================================================
-5 QUESTÕES DE MARATONA — ALGORITMOS DE ORDENAÇÃO
-COM CONTEXTO, ENUNCIADO E SOLUÇÕES COMPLETAS + COMENTADAS
-======================================================================
-"""
-
-# =====================================================================
-# QUESTÃO 1 — Insertion Sort em número de páginas de livros
-# =====================================================================
+#  11 — Insertion Sort em número de páginas de livros
 """
 Enunciado:
 Uma biblioteca recebeu uma lista com a quantidade de páginas de novos livros.
@@ -532,7 +468,7 @@ def insertion_sort_pages(arr):
         arr[j+1] = chave
     return arr, moves
 
-print("QUESTÃO 1")
+print(" 1")
 livros = [320, 150, 220, 180, 400]
 ordenado1, mv1 = insertion_sort_pages(livros)
 print("Ordenado:", ordenado1)
@@ -540,9 +476,7 @@ print("Deslocamentos:", mv1)
 print("-" * 70)
 
 
-# =====================================================================
-# QUESTÃO 2 — Bucket Sort em pesos de pacotes
-# =====================================================================
+#  12 — Bucket Sort em pesos de pacotes
 """
 Enunciado:
 Um armazém recebe pacotes com pesos entre 0 e 1 kg.
@@ -581,16 +515,14 @@ def bucket_sort_verbose(arr):
         result.extend(b)
     return result
 
-print("QUESTÃO 2")
+print(" 2")
 pacotes = [0.42, 0.32, 0.23, 0.52, 0.12, 0.75, 0.33]
 ordenado2 = bucket_sort_verbose(pacotes)
 print("Ordenado:", ordenado2)
 print("-" * 70)
 
 
-# =====================================================================
-# QUESTÃO 3 — MergeSort para ordenar vendas mensais
-# =====================================================================
+# 13— MergeSort para ordenar vendas mensais
 """
 Enunciado:
 Uma loja registra vendas diárias durante 30 dias.
@@ -631,7 +563,7 @@ def merge_sales(left, right):
 import random
 vendas = [random.randint(100, 2000) for _ in range(30)]
 
-print("QUESTÃO 3")
+print(" 3")
 merge_divisions = 0
 ordenado3 = merge_sort_sales(vendas)
 print("Vendas ordenadas:", ordenado3)
@@ -639,9 +571,7 @@ print("Divisões realizadas:", merge_divisions)
 print("-" * 70)
 
 
-# =====================================================================
-# QUESTÃO 4 — Radix Sort base 16 em códigos hexadecimais
-# =====================================================================
+# 14 — Radix Sort base 16 em códigos hexadecimais
 """
 Enunciado:
 Códigos de peças industriais possuem 4 dígitos hexadecimais.
@@ -676,16 +606,14 @@ def radix_sort_hex(arr):
     # Converte de volta para hexadecimal
     return [format(num, "04X") for num in nums]
 
-print("QUESTÃO 4")
+print(" 4")
 codigos = ["1A3F", "0F22", "3B10", "1A01", "2CFF"]
 ordenado4 = radix_sort_hex(codigos)
 print("Ordenado (hex):", ordenado4)
 print("-" * 70)
 
 
-# =====================================================================
-# QUESTÃO 5 — HeapSort em prioridades de suporte
-# =====================================================================
+#  15 — HeapSort em prioridades de suporte
 """
 Enunciado:
 Chamados de suporte têm prioridades (1 a 100).
@@ -730,7 +658,7 @@ def heapsort_support(arr):
 
     return saida  # prioridades em ordem decrescente
 
-print("QUESTÃO 5")
+print(" 5")
 prioridades = [55, 80, 30, 95, 60, 74]
 ordenado5 = heapsort_support(prioridades)
 print("Chamados em ordem de atendimento:", ordenado5)

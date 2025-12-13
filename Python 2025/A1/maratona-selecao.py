@@ -1,26 +1,13 @@
-"""
-===============================================
-5 QUESTÕES DE MARATONA – ALGORITMOS DE SELEÇÃO
-(Quickselect, Mediana das Medianas)
-Todas com enunciado + solução comentada
-===============================================
-"""
-
-# --------------------------------------------------------------
 # QUESTÃO 1 — QUICKSELECT BÁSICO
-# --------------------------------------------------------------
-"""
-Enunciado:
+"""Enunciado:
 Dado um vetor de inteiros e um valor k (0-indexado), encontre
 o k-ésimo menor elemento usando o algoritmo Quickselect.
 
 Entrada de exemplo:
-  arr = [9, 1, 5, 3, 7, 2, 8]
-  k = 3   (3º menor → resposta = 5)
+arr = [9, 1, 5, 3, 7, 2, 8]
+k = 3   (3º menor → resposta = 5)
 
-Saída:
-  Retorne o k-ésimo menor elemento.
-"""
+Saída: Retorne o k-ésimo menor elemento."""
 
 def quickselect(arr, k):
     """Retorna o k-ésimo menor elemento usando Quickselect. O(n) esperado."""
@@ -54,18 +41,14 @@ def quickselect(arr, k):
 print("Q1:", quickselect([9,1,5,3,7,2,8], 3))  # esperado: 5
 
 
-# --------------------------------------------------------------
 # QUESTÃO 2 — ENCONTRAR A MEDIANA USANDO QUICKSELECT
-# --------------------------------------------------------------
-"""
-Enunciado:
+"""Enunciado:
 Dado um vetor de tamanho N (N ímpar), encontre a mediana
 utilizando Quickselect.
 
 Exemplo:
   arr = [12, 7, 3, 9, 14]
-  mediana = 9
-"""
+  mediana = 9"""
 
 def mediana_quickselect(arr):
     """Mede a mediana usando Quickselect O(n) esperado."""
@@ -76,12 +59,10 @@ def mediana_quickselect(arr):
 print("Q2:", mediana_quickselect([12,7,3,9,14]))  # esperado: 9
 
 
-# --------------------------------------------------------------
-# QUESTÃO 3 — MEDIANA DAS MEDIANAS (BFPRT) PARA SELEÇÃO EXATA
-# --------------------------------------------------------------
+# QUESTÃO 3 — MEDIANA DAS MEDIANAS PARA SELEÇÃO EXATA
 """
 Enunciado:
-Implemente o algoritmo Mediana das Medianas (BFPRT),
+Implemente o algoritmo Mediana das Medianas,
 que garante O(n) no pior caso para encontrar o k-ésimo menor.
 
 Usar grupos de 5 elementos para escolher o pivô robusto.
@@ -107,7 +88,7 @@ def partition_mm(arr, left, right, pivot):
     return store
 
 def mediana_das_medianas(arr, left, right):
-    """Retorna a mediana das medianas (BFPRT)."""
+    """Retorna a mediana das medianas."""
     n = right - left + 1
 
     if n <= 5:                                 # caso base: ordena pequeno
@@ -143,9 +124,7 @@ def select_bfprt(arr, left, right, k):
 print("Q3:", select_bfprt([8,2,6,4,5,1,9,7,3], 0, 8, 4))  # esperado: 5
 
 
-# --------------------------------------------------------------
 # QUESTÃO 4 — ENCONTRAR O 10% MENOR ELEMENTO (SELEÇÃO PERCENTIL)
-# --------------------------------------------------------------
 """
 Enunciado:
 Dado um vetor grande, encontre o elemento que está no percentil p.
@@ -169,9 +148,7 @@ def percentil(arr, p):
 print("Q4:", percentil([10,40,90,20,50,60,30,80,70], 30))  # esperado: 30
 
 
-# --------------------------------------------------------------
 # QUESTÃO 5 — MEDIANA DE DOIS VETORES (SELEÇÃO POR FUSÃO VIRTUAL)
-# --------------------------------------------------------------
 """
 Enunciado:
 Dado dois vetores A e B NÃO concatená-los explícitamente.
@@ -220,16 +197,7 @@ def mediana_2arrays(A, B):
 print("Q5:", mediana_2arrays([1,3,5], [2,4,6]))  # esperado: 3.5
 
 
-"""
-===============================================================
-5 QUESTÕES – ALGORITMOS DE SELEÇÃO (COM CONTEXTO)
-Enunciados + soluções completas + comentários linha a linha
-===============================================================
-"""
-
-# --------------------------------------------------------------
 # QUESTÃO 6 — K-ÉSIMO MAIOR TEMPO DE RESPOSTA NO SERVIDOR
-# --------------------------------------------------------------
 """
 Contexto:
 Um servidor registra os tempos de resposta (ping) de milhares de jogadores.
@@ -276,9 +244,7 @@ print("Q6:", quickselect_kth_largest([50, 10, 90, 30, 70, 20], 2))  # 2º maior 
 
 
 
-# --------------------------------------------------------------
 # QUESTÃO 7 — SOLDADO MEDIANO (MEDIANA DAS MEDIANAS)
-# --------------------------------------------------------------
 """
 Contexto:
 Uma fila de soldados com alturas aleatórias.
@@ -286,7 +252,7 @@ O comandante quer encontrar o soldado que ocupa a posição mediana,
 mas precisa ser rápido e robusto (garantia de O(n)).
 
 Tarefa:
-Usar Mediana das Medianas (BFPRT) para encontrar a mediana exata.
+Usar Mediana das Medianas para encontrar a mediana exata.
 """
 
 def partition_mm(arr, left, right, pivot):
@@ -350,9 +316,7 @@ print("Q7:", mediana_bfprt([170, 180, 175, 160, 165]))  # esperado: 170
 
 
 
-# --------------------------------------------------------------
 # QUESTÃO 8 — OS M MENORES PRODUTOS DO MARKETPLACE
-# --------------------------------------------------------------
 """
 Contexto:
 Dada uma lista enorme de preços, queremos encontrar os M menores preços,
@@ -384,20 +348,14 @@ print("Q8:", m_menores([40,10,50,20,30,5,90], 3))   # esperado: [5,10,20] (ordem
 
 
 
-# --------------------------------------------------------------
 # QUESTÃO 9 — K-ÉSIMO MENOR EM FLUXO (ONLINE SELECTION)
-# --------------------------------------------------------------
-"""
-Contexto:
-Recebemos uma sequência contínua de valores (temperaturas).
+"""Contexto: Recebemos uma sequência contínua de valores (temperaturas).
 Precisamos manter o k-ésimo menor valor a cada nova leitura sem guardar tudo.
-
 Tarefa:
 Manter duas heaps:
   - max_heap (com os k menores valores)
   - min_heap (com os demais)
-O topo da max_heap contém o k-ésimo menor.
-"""
+O topo da max_heap contém o k-ésimo menor."""
 
 import heapq
 
@@ -434,17 +392,13 @@ print("Q9:", stream.kth_smallest())   # 3º menor → 30
 
 
 
-# --------------------------------------------------------------
 # QUESTÃO 10 — ESCOLHA DO PIVÔ IDEAL PARA QUICKSORT
-# --------------------------------------------------------------
-"""
-Contexto:
+"""Contexto:
 O QuickSort perdeu desempenho em casos adversos.
 Precisamos escolher um pivô robusto usando Mediana das Medianas.
 
 Tarefa:
-Criar apenas a função choose_pivot(arr) que retorna um pivô robusto.
-"""
+Criar apenas a função choose_pivot(arr) que retorna um pivô robusto."""
 
 def choose_pivot(arr):
     """Retorna pivô robusto usando BFPRT (Mediana das Medianas)."""

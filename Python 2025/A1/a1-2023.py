@@ -1,68 +1,12 @@
-"""
-===============================================================
- QUESTÃO 1 (2 pontos)
-===============================================================
-Seja T(n) a complexidade do pior caso do algoritmo func.
-Determine f(n) tal que T(n) = Θ(f(n)).
-A solução deve explicar como f(n) foi encontrada.
-
-O código C original apresenta três funções:
-    - s(v, i, j) → troca elementos (constante)
-    - h(v, a, b) → loop duplo com chamadas a s()
-    - g(v, a, b) → algoritmo recursivo que chama h()
-
-Precisamos analisar T(n).
-
-RESUMO DA ANÁLISE:
-
-1) s(i,j) = Θ(1)
-
-2) h(v,a,b):
-        for i = a .. b:              → O(n)
-            if (...)                → O(1)
-                 s(v, i, f)        → O(1)
-→ T_h(n) = Θ(n)
-
-3) g(v,a,b):  (padrão semelhante a quicksort)
-        g(v, a, j)
-        g(v, j+1, b)
-        h(v, a, b)      ← O(n)
-
-No pior caso, o pivô divide como 1 e n−1.
-Portanto:
-
-T(n) = T(n−1) + Θ(n)
-T(n) = Θ(n²)
-
-Logo:
-    f(n) = n²
-"""
-
-# Implementação simbólica apenas para referência:
-def questao1_analise():
-    return "T(n) = Θ(n²)"
-
-
-"""
-===============================================================
- QUESTÃO 2 (1 ponto)
-===============================================================
-Dada uma sequência A ORDENADA contendo n inteiros distintos,
+"""2 - Dada uma sequência A ORDENADA contendo n inteiros distintos,
 crie um algoritmo capaz de determinar se existe um índice i tal que:
-
-        A[i] = i
-
-A complexidade do pior caso deve ser O(log n)!
-
+A[i] = i. A complexidade do pior caso deve ser O(log n)!
 IDEIA:
-    A está ordenada → podemos aplicar busca binária.
-
+A está ordenada → podemos aplicar busca binária.
 Se A[mid] > mid então a solução só pode estar à esquerda.
 Se A[mid] < mid então só pode estar à direita.
 Se A[mid] == mid → achou!
-
-COMPLEXIDADE: O(log n)
-"""
+COMPLEXIDADE: O(log n)"""
 
 def questao2(A):
     lo, hi = 0, len(A) - 1
@@ -79,14 +23,9 @@ def questao2(A):
     return False
 
 
-"""
-===============================================================
- QUESTÃO 3 (3 pontos)
-===============================================================
-O sistema precisa gerenciar uma FILA DE TAREFAS, cada uma contendo:
+""" 3 - O sistema precisa gerenciar uma FILA DE TAREFAS, cada uma contendo:
     - referência T
     - prioridade p (quanto MENOR o número, maior a prioridade)
-
 O módulo deve fornecer:
     • add_task(t, p)     → O(log n)
     • next_task()        → O(1)
@@ -105,9 +44,7 @@ c) Novo requisito:
     Solução eficiente: guardar um **mapa TAREFA → ÍNDICE NO HEAP**
     e aplicar “decrease-key” → O(log n)
 """
-
 import heapq
-
 class PriorityQueue:
     def __init__(self):
         self.heap = []                # min-heap
@@ -151,14 +88,10 @@ class PriorityQueue:
         self.position = {task: i for i, (p, task) in enumerate(self.heap)}
 
 
-"""
-===============================================================
- QUESTÃO 4 (2 pontos)
-===============================================================
-A contém n POSITIVOS INT distintos.
+"""4 - A contém n POSITIVOS INT distintos.
 Criar algoritmo que encontre os k números MAIS PRÓXIMOS da mediana a.
 
-Definição da distância:     |A[i] − a|
+Definição da distância:     |A[i] - a|
 
 Complexidade: O(n)
 
@@ -209,11 +142,7 @@ def questao4(A, k):
     return resposta[:k]
 
 
-"""
-===============================================================
- QUESTÃO 5 (2 pontos)
-===============================================================
-A contém n inteiros positivos. 
+"""5 - A contém n inteiros positivos. 
 Cada número pertence ao conjunto:
     {n², n² + 1, n² + 2, ..., n² + n}
 

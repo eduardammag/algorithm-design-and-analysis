@@ -1,13 +1,8 @@
-"""
-===========================================================
-QUESTÃO 1 — Tabela Hash com Encadeamento: Contagem de Colisões
------------------------------------------------------------
+""" 1 — Tabela Hash com Encadeamento: Contagem de Colisões
 Implemente uma tabela hash de tamanho M utilizando encadeamento.
 Ao inserir N chaves, conte quantas colisões ocorreram.
-
 Uma colisão ocorre quando:
  - vamos inserir uma chave num bucket que já contém pelo menos 1 elemento
-===========================================================
 """
 
 def hash_insert_chaining_count_collisions(M, keys):
@@ -30,10 +25,7 @@ def hash_insert_chaining_count_collisions(M, keys):
 
 
 
-"""
-===========================================================
-QUESTÃO 2 — Hash com Endereçamento Aberto: Sondagem Linear
------------------------------------------------------------
+""" 2 — Hash com Endereçamento Aberto: Sondagem Linear
 Implementar:
  I X → inserir X
  B X → buscar X
@@ -41,10 +33,7 @@ Implementar:
 
 Hash:
  h(key, i) = (key % M + i) % M
-
-Caso a tabela fique cheia → imprimir "FULL".
-===========================================================
-"""
+Caso a tabela fique cheia → imprimir "FULL"."""
 
 def hashing_linear_probing(M, operations):
     # Cria uma tabela hash preenchida com None (vazio)
@@ -89,18 +78,13 @@ def hashing_linear_probing(M, operations):
 
 
 
-"""
-===========================================================
-QUESTÃO 3 — Hash com Endereçamento Aberto: Sondagem Quadrática
------------------------------------------------------------
+"""3 — Hash com Endereçamento Aberto: Sondagem Quadrática
 Operações:
  I X → inserir
  B X → buscar
  R X → remover (usando marcador "DELETED")
-
 Hash:
  h(key, i) = (key % M + i*i) % M
-===========================================================
 """
 
 def hashing_quadratic_probing(M, operations):
@@ -153,9 +137,7 @@ def hashing_quadratic_probing(M, operations):
 
 
 """
-===========================================================
-QUESTÃO 4 — Double Hashing: Contagem de Sondas
------------------------------------------------------------
+4 — Double Hashing: Contagem de Sondas
 Inserir várias chaves usando double hashing e contar quantas
 sondagens totais foram necessárias.
 
@@ -164,7 +146,6 @@ h2(key) = 1 + (key mod (M-1))
 h(key,i) = (h1 + i*h2) mod M
 
 Cada tentativa conta como 1 sondagem.
-===========================================================
 """
 
 def double_hashing_count_probes(M, keys):
@@ -187,20 +168,14 @@ def double_hashing_count_probes(M, keys):
 
 
 
-"""
-===========================================================
-QUESTÃO 5 — Encadeamento com Remoção e Relatórios
------------------------------------------------------------
+""" 5 — Encadeamento com Remoção e Relatórios
 Operações:
  I X → inserir X
  R X → remover X
  B X → buscar X
  L   → imprimir tamanhos dos buckets
 
-Imprimir L como:
- size0 size1 size2 ... size(M-1)
-===========================================================
-"""
+Imprimir L como: size0 size1 size2 ... size(M-1)"""
 
 def hashing_chaining_full(M, operations):
     # Cria tabela hash como lista de listas
@@ -244,13 +219,7 @@ def hashing_chaining_full(M, operations):
             list_sizes()
 
 
-
-"""
-===========================================================
-EXEMPLOS DE USO (TESTE RÁPIDO)
-===========================================================
-"""
-
+# EXEMPLOS DE USO (TESTE RÁPIDO)
 if __name__ == "__main__":
     print("\n--- Q1 ---")
     print(hash_insert_chaining_count_collisions(5, [1, 6, 11, 3, 8]))
