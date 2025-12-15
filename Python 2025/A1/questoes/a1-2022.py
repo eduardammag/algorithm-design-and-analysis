@@ -5,7 +5,6 @@ Ideia:
 1. Ordenar o array -> O(n log n)
 2. Para cada par (i, j), buscar x - (A[i] + A[j]) por busca binária -> O(log n)
 Total: n² pares x log n = O(n² log n)"""
-
 def questao2(A, x):
     A = sorted(A)                      # O(n log n)
     n = len(A)
@@ -27,10 +26,9 @@ def questao2(A, x):
 
 
 """ 3 - Uma sequência A de tamanho n contém inteiros positivos e negativos.
-a) Produzir algoritmo O(n³) que encontra i < j tal que soma(A[i]..A[j]) é máxima.
+a) Produzir algoritmo O(n³) que encontra i e j, tal que i < j tal que soma(A[i]+...+A[j]) é máxima.
 b) Otimizar para O(n²).
 c) Avaliar se é possível O(n). (Sim — Kadane)"""
-
 # a) Solução O(n³)
 def max_subarray_cubico(A):
     n = len(A)
@@ -43,7 +41,6 @@ def max_subarray_cubico(A):
             melhor = max(melhor, soma)
     return melhor
 
-
 # b) Solução O(n²)
 def max_subarray_quadratico(A):
     n = len(A)
@@ -54,7 +51,6 @@ def max_subarray_quadratico(A):
             soma += A[j]            # soma acumulada
             melhor = max(melhor, soma)
     return melhor
-
 
 # c) Solução O(n) — Kadane
 def max_subarray_kadane(A):
@@ -108,10 +104,9 @@ COMPLEXIDADE:
 
 
 """5- Dadas sequências A (m elementos) e B (n elementos), m ≥ n,
-produzir sequência C contendo os elementos de A
-REORDENADOS segundo a ordem dos elementos de B.
-Os elementos de A que não aparecem em B vão para o final em ordem crescente.
-Exemplo:
+produzir sequência C contendo os elementos de A REORDENADOS segundo
+a ordem dos elementos de B. Os elementos de A que não aparecem em 
+B vão para o final em ordem crescente. Exemplo:
 A = [5,8,9,3,5,7,1,3,4,9,5,1,8,4]
 B = [3,5,7,2]
 C = [3,3,3,5,5,5,7,1,1,4,4,8,8,9,9]
@@ -119,23 +114,18 @@ Complexidade requerida: O(m log m)"""
 
 def questao5(A, B):
     from collections import Counter
-
     freq = Counter(A)  # Frequências de A
     C = []
-
     # Primeiro, adiciona elementos na ordem de B
     for b in B:
         if b in freq:
             C.extend([b]*freq[b])
             del freq[b]
-
     # Agora adiciona os que sobraram, mas em ordem crescente
     restantes = []
     for val, qt in freq.items():
         restantes.extend([val]*qt)
-
     C.extend(sorted(restantes))  # O(m log m)
-
     return C
 
 

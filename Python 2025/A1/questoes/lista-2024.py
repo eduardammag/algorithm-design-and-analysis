@@ -5,10 +5,8 @@
 from collections import Counter
 
 def questao7_k_esimo_mais_frequente(A, k):
-    """
-    Retorna o k-ésimo número mais frequente de A.
-    Como m > k e todos são diferentes, basta contar e ordenar.
-    """
+    """Retorna o k-ésimo número mais frequente de A.
+    Como m > k e todos são diferentes, basta contar e ordenar."""
     freq = Counter(A)                # O(n)
     # Ordena por frequência decrescente — ainda O(n) pois m é limitado
     mais_frequentes = sorted(freq.items(), key=lambda x: x[1], reverse=True)
@@ -17,11 +15,8 @@ def questao7_k_esimo_mais_frequente(A, k):
 
 # 8. Dado um valor z e uma lista A com n inteiros, encontre um par cuja soma = z.
 #    Complexidade O(n).
-
 def questao8_par_soma_z(A, z):
-    """
-    Usa hash set para verificar se (z - x) já foi visto.
-    """
+    """Usa hash set para verificar se (z - x) já foi visto. """
     vistos = set()
     for x in A:   # O(n)
         if z - x in vistos:
@@ -35,12 +30,9 @@ def questao8_par_soma_z(A, z):
 #    Complexidade O(n * m).
 
 def questao9_listas_com_intersecao(A):
-    """
-    A é uma lista de listas. Verifica se cada lista tem interseção com outras.
-    """
+    """A é uma lista de listas. Verifica se cada lista tem interseção com outras."""
     n = len(A)
     conjuntos = [set(lista) for lista in A]  # Conversão O(n*m)
-
     count = 0
     for i in range(n):
         tem_intersecao = False
@@ -56,21 +48,16 @@ def questao9_listas_com_intersecao(A):
 # 10. Dada uma lista A de inteiros não negativos,
 #     retorne o maior x tal que existam pelo menos x inteiros em A >= x.
 #     Complexidade O(n).
-
 def questao10_maior_x(A):
-    """
-    Problema similar ao "índice de Hirsch (h-index)".
-    """
+    """Problema similar ao "índice de Hirsch (h-index)"."""
     n = len(A)
     contagem = [0] * (n + 1)
-    
     # Contagem limitada em n
     for x in A:
         if x >= n:
             contagem[n] += 1
         else:
             contagem[x] += 1
-
     # Varre de trás para frente contando quantos >= x
     total = 0
     for x in range(n, -1, -1):
@@ -80,10 +67,8 @@ def questao10_maior_x(A):
     return -1
 
 
-# 11. Dada uma BST T com n nós,
-#     retorne a menor diferença entre valores de nós diferentes.
-#     Complexidade O(n).
-
+# 11. Dada uma BST T com n nós, retorne a menor diferença entre valores de nós diferentes.
+# Complexidade O(n).
 class Node:
     def __init__(self, v):
         self.v = v
@@ -91,13 +76,10 @@ class Node:
         self.r = None
 
 def questao11_menor_diferenca_bst(root):
-    """
-    Em uma BST, a menor diferença ocorre entre elementos consecutivos
-    da travessia in-order.
-    """
+    """Em uma BST, a menor diferença ocorre entre elementos consecutivos
+    da travessia in-order."""
     prev = None
     menor = float('inf')
-
     def inorder(node):
         nonlocal prev, menor
         if not node: return
@@ -115,13 +97,9 @@ def questao11_menor_diferenca_bst(root):
 #     Em ordem crescente de proximidade. Complexidade O(n log k).
 
 import heapq
-
 def questao12_k_mais_proximos(A, x, k):
-    """
-    Mantém heap máximo de tamanho k com tuplas (-dist, valor).
-    """
+    """Mantém heap máximo de tamanho k com tuplas (-dist, valor)."""
     heap = []  # max-heap simulado com dist negativa
-
     for val in A:
         dist = abs(val - x)
         if len(heap) < k:
@@ -129,7 +107,6 @@ def questao12_k_mais_proximos(A, x, k):
         else:
             if dist < -heap[0][0]:
                 heapq.heapreplace(heap, (-dist, val))
-
     # Ordena pelo valor real da distância
     return [v for _, v in sorted(heap, key=lambda t: -t[0])]
 
@@ -138,13 +115,10 @@ def questao12_k_mais_proximos(A, x, k):
 #     tal que a diferença ≤ z. Complexidade O(n log n).
 
 def questao13_maior_diff_limitada(A, z):
-    """
-    Ordena e usa dois ponteiros para manter diferença ≤ z.
-    """
+    """Ordena e usa dois ponteiros para manter diferença ≤ z."""
     A = sorted(A)
     i = 0
     melhor = -1
-
     for j in range(len(A)):
         while A[j] - A[i] > z:
             i += 1
@@ -157,11 +131,9 @@ def questao13_maior_diff_limitada(A, z):
 #     Complexidade O(n).
 
 def questao14_guloso_produtos(A):
-    """
-    Como não há valor para 'produto máximo' no enunciado mostrado,
+    """Como não há valor para 'produto máximo' no enunciado mostrado,
     interpretamos como:
-        - Encontrar o par (i, j) cujo produto A[i]*A[j] é máximo.
-    """
+        - Encontrar o par (i, j) cujo produto A[i]*A[j] é máximo."""
     if len(A) < 2: 
         return None
     # Em O(n) acha dois maiores
@@ -179,9 +151,7 @@ def questao14_guloso_produtos(A):
 #     Complexidade O(n).
 
 def questao15_bst_balanceada(sorted_list):
-    """
-    Constrói uma BST perfeitamente balanceada via divisão ao meio.
-    """
+    """Constrói uma BST perfeitamente balanceada via divisão ao meio."""
     if not sorted_list:
         return None
     mid = len(sorted_list) // 2
